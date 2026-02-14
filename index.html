@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Abril</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Generales */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #090a0f;
+            /* Fondo base oscuro */
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* LAS ESTRELLAS */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Al fondo de todo */
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.5;
+            animation: twinkle 5s infinite;
+        }
+
+        /* LAS FLORES FLOTANTES */
+        .flower {
+            position: absolute;
+            bottom: -100px; /* Empiezan fuera de la pantalla abajo */
+            /* AQUÍ VA EL NOMBRE DE TU IMAGEN */
+            background-image: url('https://png.pngtree.com/png-clipart/20230916/original/pngtree-the-beautiful-lily-of-the-valley-with-detachable-sticker-clipart-vector-png-image_12246603.png'); 
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -1; /* Detrás de la carta pero delante de las estrellas */
+            pointer-events: none; /* Para que no estorben al clickear */
+            border-radius: 50%; /* Por si la imagen tiene fondo cuadrado, lo suaviza */
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg); /* Suben hasta salir por arriba */
+                opacity: 0;
+            }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Contenedor de la Carta */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(20, 20, 30, 0.6); /* Un poco más oscuro para contraste */
+            backdrop-filter: blur(12px); /* Efecto vidrio */
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 10; /* Asegura que la carta esté encima de las flores */
+        }
+
+        /* Secciones */
+        #intro-content, #letter-content, #final-message {
+            display: none;
+            opacity: 0;
+        }
+
+        #intro-content {
+            display: block;
+            opacity: 1;
+        }
+
+        #letter-content, #final-message {
+            overflow-y: auto;
+            text-align: left;
+            padding-right: 10px;
+            flex-grow: 1;
+        }
+
+        /* Tipografía */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff; /* Blanco puro para resaltar */
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        p, .letter-body, .final-body {
+            line-height: 1.6;
+            color: #e0e0e0;
+            font-size: 0.95em;
+            white-space: pre-wrap;
+        }
+        
+        .final-body p { font-size: 1.1em; color: #fff; }
+
+        .disclaimer {
+            font-style: italic;
+            border-left: 3px solid #8e9eab;
+            padding-left: 15px;
+            text-align: left;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Botones */
+        .btn-container {
+            margin-top: auto;
+            padding-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 12px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #090a0f;
+            box-shadow: 0 0 20px rgba(255,255,255,0.6);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.3); border-radius: 10px; }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            margin-top: 30px;
+            text-align: right;
+            color: #fff;
+        }
+
+        .fade-in { animation: fadeIn 1.2s forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div id="flowers-container"></div>
+
+    <div class="container">
+        
+        <div id="intro-content">
+            <h1>Hola, Abril</h1>
+            <div class="disclaimer">
+                <p>Antes de que empieces a leer esto, quiero aclarar que esta carta la escribí antes de "ese día". En su momento tenía mucha ilusión de que la recibieras, pero no pude enviarla por lo que pasó y al final quedó guardada.</p>
+                <p>Pensaba borrarla pero no pude. Sé que quizá ya no tiene valor, pero si quieres leerla, solo no tomes importancia a las cosas que digo.</p>
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="showSection('letter-content')">Leer Cartita <3 </button>
+            </div>
+        </div>
+
+        <div id="letter-content">
+            <h1>Holi mi niña,</h1>
+            <div class="letter-body">
+¿Cómo estás? Te escribo esto como un detalle ya que no estoy en clases y estoy en casa de mi abuelo, tengo la chance de tomar más tiempo para esto.
+
+Mi princesa, sé que muchas veces tú y yo estamos ocupados y no nos tomamos mucho tiempo juntos, pero el momento en el que hablamos, Dios, no podría ser tan feliz. Espero con ansias volver a casa para hablar nuevamente y con más libertad y frecuencia porque por fin soy libre de la U por el momento jaja.
+
+Mi vida, no sabes lo mucho que te agradezco por todo, en serio eres lo mejor que me ha pasado. Gracias a ti pude superar la soledad y la depresión que sufría constantemente. Sanaste el dolor que otros causaron en mí y, aunque no era tu deber, ni tu obligación, ni siquiera tu responsabilidad, elegiste estar ahí conmigo. Me ayudabas siempre que podías y me acompañabas en todo: cuando jugaba, cuando almorzaba y cuando hacía deberes.
+
+No sabes lo feliz que soy, ya que esas actividades siempre las realicé solo y sinceramente me sentía muy triste. Imagina comer en una mesa de 6 y estar solo; la verdad eso me ponía muy triste y a veces prefería no comer para no sentirme así. Era raro comer en familia y a veces, cuando lo hacíamos, ellos estaban en sus teléfonos. Desde muy pequeño me acostumbré a comer solo, pero hacer esas actividades comunes contigo en llamada se sienten bien. Me siento acompañado y feliz, siento que estás ahí conmigo y eso me reconforta y me hace disfrutar del momento.
+
+Fue cuando me di cuenta que estar contigo hace de todo mejor. Fue así con todo, cada actividad que ya no me traía calma o felicidad, tú hiciste que eso volviera y lo mejoraste. Sentir tu compañía, sentir tu presencia y escuchar tu voz... no puedo creer lo feliz que me pone y Dios, cuánto deseo poder hacerlo un día en persona.
+
+Te amo, en serio me haces muy feliz y me has ayudado más de lo que crees. Gracias a ti me siento motivado a continuar con mi vida y a esforzarme más y más para cumplir con mi sueño, mi sueño de formar una familia junto a ti. Estoy tan emocionado, sé que aún falta muchísimo tiempo pero pensarlo me alegra muchísimo y no viene mal ir pensando un poco en el futuro. Ojalá y la universidad apruebe mi promedio para el intercambio y poder verte lo más pronto, pero tengo que esperar hasta el 12 de enero a que me confirmen jajaja, pero bueno ojalá y salga bien todo.
+
+Gracias mi niña, has hecho de mí una mejor persona y siempre deseo ser mejor y ser más fuerte, más listo y mejor en todo. Quiero ser el chico perfecto para ti y es por eso que me esfuerzo tanto. Yo sé que nuestra relación a distancia tiene dificultades como el tiempo, el dinero y la distancia, pero sé que superaré todas esas dificultades, lo haremos juntos ya que yo lo haré posible porque lo mereces y quiero ayudarte a cumplir tus sueños. Quiero estar ahí para ti como tú lo estás para mí. Por eso me esfuerzo mucho, porque Abril mi niña, lo vales. Vales todo el esfuerzo, cada gota de sudor y cada gota de sangre vale la pena para estar un día a tu lado.
+
+Es por eso que te prometo que daré todo mi esfuerzo por ti. Ay cuánto te amo, gracias por todo en serio. Espero con muchas ganas este 2026 junto a ti y te deseo un feliz año que disfrutes con tu familia. Por mi parte, tu niño Sho hará su mejor esfuerzo para ser el hombre perfecto para ti. Siempre te amaré y estaré ahí para lo que necesites.
+
+Muah muah, te amo tanto. Eres mi diosa, mi reina, mi Abril. Te lo agradezco mucho en serio, te amo y haré lo que sea para hacer tus sueños realidad.
+            </div>
+            <div class="signature">
+                Con muchísimo amor,<br>tu niño Sho <3
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="showSection('final-message')">Continuar...</button>
+            </div>
+        </div>
+
+        <div id="final-message">
+            <div class="final-body">
+                <p>Eso es todo, Abril. Te amo mucho y te extraño tanto. Me siento solo sin ti y me gustaría volver a hablar contigo para aclarar cosas. También me encantaría pasar este 14 de febrero contigo, tengo algunas ideas, ¿qué dices?, No sé si estás ocupada o si ya tienes planes, así que por favor házmelo saber, En cuyo caso te deseo lo mejor y que te la pases genial este día y que disfrutes mucho sea con tu familia, amigos o si incluso no harás nada ten un día increíble.</p>
+            </div>
+            <div class="signature" style="font-size: 1.6em;">
+                Te quiero mucho, disfruta de tu día.<br> <3
+            </div>
+            <div class="btn-container">
+                <a href="https://drive.google.com/drive/folders/1QNfeDRD50AGBXJ0IkdXZDls7B8_dT0NS" target="_blank" class="btn btn-gift">
+                    ❤️ Un regalito especial 🎁
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* LÓGICA DE LAS FLORES */
+        function createFlowers() {
+            const container = document.getElementById('flowers-container');
+            const flowerCount = 20; // Cantidad de flores flotando
+
+            for (let i = 0; i < flowerCount; i++) {
+                let flower = document.createElement('div');
+                flower.classList.add('flower');
+                
+                // Posición aleatoria en el ancho de la pantalla
+                flower.style.left = Math.random() * 100 + 'vw';
+                
+                // Velocidad aleatoria (entre 15 y 25 segundos para subir)
+                flower.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                // Retraso aleatorio para que no salgan todas juntas
+                flower.style.animationDelay = Math.random() * 10 + 's';
+                
+                // Tamaño aleatorio para dar profundidad (entre 30px y 60px)
+                let size = Math.random() * 30 + 30; 
+                flower.style.width = size + 'px';
+                flower.style.height = size + 'px';
+
+                container.appendChild(flower);
+            }
+        }
+
+        /* LÓGICA DE SECCIONES */
+        function showSection(sectionId) {
+            document.getElementById('intro-content').style.display = 'none';
+            document.getElementById('letter-content').style.display = 'none';
+            document.getElementById('final-message').style.display = 'none';
+            
+            var sectionToShow = document.getElementById(sectionId);
+            sectionToShow.style.display = 'block';
+            sectionToShow.classList.remove('fade-in');
+            void sectionToShow.offsetWidth; 
+            sectionToShow.classList.add('fade-in');
+        }
+
+        // Iniciar las flores al cargar
+        window.onload = createFlowers;
+    </script>
+</body>
+</html>
